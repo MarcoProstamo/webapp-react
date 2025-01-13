@@ -1,0 +1,12 @@
+.navlink {
+  color: unset;
+  text-decoration: unset;
+}
+
+.navlink:hover {
+  color: blueviolet;
+}
+
+.navlink.active {
+  color: blueviolet;
+}
