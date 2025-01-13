@@ -4,17 +4,19 @@ import HomePage from "./assets/pages/HomePage";
 import AboutUsPage from "./assets/pages/AboutUsPage";
 import MoviesPage from "./assets/pages/MoviesPage";
 import RandomPage from "./assets/pages/RandomPage";
+import MovieDetailPage from "./assets/pages/MovieDetailPage";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route Component={DefaultLayout}>
+        <Route element={<DefaultLayout />}>
           <Route path="/">
-            <Route index Component={HomePage} />
-            <Route path="/aboutus" Component={AboutUsPage} />
-            <Route path="/movies" Component={MoviesPage} />
-            <Route path="/random" Component={RandomPage} />
+            <Route index element={<HomePage />} />
+            <Route path="aboutus" element={<AboutUsPage />} />
+            <Route path="random" element={<RandomPage />} />
+            <Route path="movies" element={<MoviesPage />} />
+            <Route path="movies/:id" element={<MovieDetailPage />} />
           </Route>
         </Route>
       </Routes>
