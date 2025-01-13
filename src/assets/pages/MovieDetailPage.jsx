@@ -9,7 +9,17 @@ export default function MovieDetailPage() {
   useEffect(() => {
     fetch(BACKEND_URL + `/api/movies/${movieId}`)
       .then((res) => res.json())
-      .then((data) => setMovie(data[0]))
+      .then((data) => {
+        console.log(data[0].votes);
+
+        const votes = data[0].votes.split(";");
+        const names = data[0].names.split(";");
+        const reviews = data[0].reviews.split(";");
+        const newData = [
+          { ...data[0], votes: votes, names: names, reviews: reviews },
+        ];
+        setMovie(newData[0]);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -24,7 +34,15 @@ export default function MovieDetailPage() {
           <li>{movie.release_year}</li>
           <li>{movie.abstract}</li>
           <li>{movie.image}</li>
-          <li>{movie.reviews}</li>
+          <li>
+            {movie.names.map((name, index) => (
+              <>
+                <li>{name}</li>
+                <li>{movie.votes[index]}</li>
+                <li>{movie.reviews[index]}</li>
+              </>
+            ))}
+          </li>
         </ul>
       )}
       <button onClick={() => navigate(-1)}>Back to Movies</button>
