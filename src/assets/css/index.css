@@ -55,3 +55,68 @@ body {
   color: var(--blueviolet-light-2);
   border-bottom: 2px solid var(--blueviolet-light-2);
 }
+
+/* General Reset */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and Font */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Section */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section img.responsive-img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.timeline-item {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.genre-card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
