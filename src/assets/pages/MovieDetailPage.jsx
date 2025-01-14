@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/Card";
 
 export default function MovieDetailPage() {
@@ -19,6 +22,20 @@ export default function MovieDetailPage() {
       })
       .catch((err) => console.error(err));
   }, []);
+
+  function starGenerate(rating) {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      const star =
+        i < rating ? (
+          <FontAwesomeIcon key={i + rating} icon={solidStar} />
+        ) : (
+          <FontAwesomeIcon key={i} icon={regularStar} />
+        );
+      stars.push(star);
+    }
+    return stars;
+  }
 
   return (
     movie && (
@@ -70,10 +87,22 @@ export default function MovieDetailPage() {
                   key={index}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
                 >
-                  <ul>
-                    {console.log(movie.reviews)}
-                    <li>{movie.reviews[0][index]}</li>
-                    <li>{movie.reviews[1][index]}</li>
+                  <ul className="list-unstyled">
+                    <li>
+                      <div>
+                        <div className="icon">
+                          {movie.reviews[0][index].charAt(0)}
+                        </div>
+                        <span className="ms-3 fs-3">
+                          {movie.reviews[0][index]}
+                        </span>
+                      </div>
+                    </li>
+                    <li>
+                      {starGenerate(movie.reviews[1][index]).map(
+                        (star) => star
+                      )}
+                    </li>
                     <li>{movie.reviews[2][index]}</li>
                   </ul>
                 </div>
