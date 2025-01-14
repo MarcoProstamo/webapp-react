@@ -1,12 +1,57 @@
+:root {
+  /* Main Color */
+  --blueviolet: #8a2be2;
+
+  /* Lighter Shades */
+  --blueviolet-light-1: #a04cef; /* 20% lighter */
+  --blueviolet-light-2: #b66dfb; /* 40% lighter */
+
+  /* Darker Shades */
+  --blueviolet-dark-1: #751fba; /* 20% darker */
+  --blueviolet-dark-2: #601796; /* 40% darker */
+
+  /* Complementary Color */
+  --blueviolet-complementary: #e2b82b; /* Yellowish */
+
+  /* Analogous Colors */
+  --blueviolet-analogous-1: #2b8ae2; /* Blue */
+  --blueviolet-analogous-2: #e22bb8; /* Pinkish */
+
+  /* Triadic Colors */
+  --blueviolet-triad-1: #2be28a; /* Greenish */
+  --blueviolet-triad-2: #e28a2b; /* Orangish */
+
+  /* Tetradic Colors */
+  --blueviolet-tetrad-1: #8ae22b; /* Lime Green */
+  --blueviolet-tetrad-2: #2be28a; /* Teal */
+  --blueviolet-tetrad-3: #e22b2b; /* Red */
+
+  /* Neutral Pairing */
+  --blueviolet-neutral-light: #e8e0f5; /* Soft Lavender */
+  --blueviolet-neutral-dark: #3f2260; /* Deep Purple */
+}
+
+body {
+  background-color: var(--blueviolet-neutral-light);
+  color: var(--blueviolet-neutral-dark);
+}
+
+.text-color {
+  color: var(--blueviolet-analogous-1);
+}
+
 .navlink {
   color: unset;
   text-decoration: unset;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
 }
 
 .navlink:hover {
-  color: blueviolet;
+  color: var(--blueviolet-light-2);
 }
 
 .navlink.active {
-  color: blueviolet;
+  color: var(--blueviolet-light-2);
+  border-bottom: 2px solid var(--blueviolet-light-2);
 }
