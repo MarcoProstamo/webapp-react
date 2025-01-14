@@ -18,7 +18,7 @@ export default function MoviesPage() {
         {movies &&
           movies.map((movie) => (
             <Link key={movie.id} to={`/movies/${movie.id}`}>
-              <Card config={movie} />
+              <Card config={{ movie, position: "center" }} />
             </Link>
           ))}
       </div>

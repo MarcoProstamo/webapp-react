@@ -1,9 +1,9 @@
 export default function Card({ config }) {
-  const { title, image } = config;
+  const { movie, position } = config;
   return (
     <>
-      <div className="col d-flex justify-content-center" id="movie-col">
-        <img src={image} className="card-img" alt={title} />
+      <div className={`col d-flex justify-content-${position}`} id="movie-col">
+        <img src={movie.image} className="card-img" alt={movie.title} />
       </div>
     </>
   );
