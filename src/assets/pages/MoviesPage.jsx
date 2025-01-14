@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Card from "../components/Card";
 export default function MoviesPage() {
   const { VITE_BACKEND_URL: BACKEND_URL } = import.meta.env;
   const [movies, setMovies] = useState(null);
@@ -11,13 +12,15 @@ export default function MoviesPage() {
   }, []);
 
   return (
-    <ul>
-      {movies &&
-        movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-    </ul>
+    <div className="container">
+      <div className="row row-cols-5 gap-5">
+        {movies &&
+          movies.map((movie) => (
+            <Link key={movie.id} to={`/movies/${movie.id}`}>
+              <Card config={movie} />
+            </Link>
+          ))}
+      </div>
+    </div>
   );
 }
