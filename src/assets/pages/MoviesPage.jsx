@@ -13,6 +13,7 @@ export default function MoviesPage() {
 
   return (
     <div className="container">
+      <h1 className="text-center fw-semibold mb-3">Movies</h1>
       <div className="row row-cols-5 gap-5">
         {movies &&
           movies.map((movie) => (
