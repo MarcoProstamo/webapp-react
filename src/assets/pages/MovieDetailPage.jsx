@@ -37,6 +37,26 @@ export default function MovieDetailPage() {
     return stars;
   }
 
+  const initialFormData = {
+    name: "",
+    vote: "",
+    text: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setFormData(initialFormData);
+  }
+
   return (
     movie && (
       <>
@@ -61,7 +81,64 @@ export default function MovieDetailPage() {
           <hr />
         </div>
 
-        <div className="container text-center">Form</div>
+        <div className="container text-center">
+          <form onSubmit={handleSubmit}>
+            <div className="row align-items-end">
+              <div className="col-3">
+                <label htmlFor="nameInput" className="form-label">
+                  Nome
+                </label>
+                <input
+                  required
+                  type="text"
+                  id="nameInput"
+                  className="form-control"
+                  placeholder="Nome..."
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-3">
+                <label htmlFor="voteInput" className="form-label">
+                  Voto
+                </label>
+                <input
+                  required
+                  type="number"
+                  min="1"
+                  max="5"
+                  id="voteInput"
+                  className="form-control"
+                  placeholder="Voto..."
+                  name="vote"
+                  value={formData.vote}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-3">
+                <label htmlFor="textInput" className="form-label">
+                  Recensione
+                </label>
+                <input
+                  required
+                  type="text"
+                  id="textInput"
+                  className="form-control"
+                  placeholder="Recensione..."
+                  name="text"
+                  value={formData.text}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-2">
+                <button type="submit" className="btn btn-primary">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
 
         <div className="container my-5">
           <hr />
