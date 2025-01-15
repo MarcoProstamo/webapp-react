@@ -66,8 +66,20 @@ export default function MovieDetailPage() {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
-
     setFormData(initialFormData);
+
+    fetch(BACKEND_URL + `/api/movies/${movieId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const votes = data[0].votes.split(";");
+        const names = data[0].names.split(";");
+        const text = data[0].reviews.split(";");
+        const reviews = [names, votes, text];
+        const newData = [{ ...data[0], reviews }];
+        setMovie(newData[0]);
+        console.log(newData[0]);
+      })
+      .catch((err) => console.error(err));
   }
 
   return (
@@ -163,7 +175,7 @@ export default function MovieDetailPage() {
         >
           <div className="carousel-inner text-center">
             {movie &&
-              movie.reviews.map((item, index) => (
+              movie.reviews[0].map((item, index) => (
                 <div
                   key={index}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
@@ -190,26 +202,17 @@ export default function MovieDetailPage() {
               ))}
           </div>
           <div className="carousel-indicators position-relative">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
+            {movie &&
+              movie.reviews[0].map((item, index) => (
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to={index}
+                  className={index === 0 ? `active` : ""}
+                  aria-current="true"
+                  aria-label={`Slide ${index + 1}`}
+                ></button>
+              ))}
           </div>
           <button
             className="carousel-control-prev"
