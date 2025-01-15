@@ -64,22 +64,22 @@ export default function MovieDetailPage() {
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
-    setFormData(initialFormData);
-
-    fetch(BACKEND_URL + `/api/movies/${movieId}`)
-      .then((res) => res.json())
       .then((data) => {
-        const votes = data[0].votes.split(";");
-        const names = data[0].names.split(";");
-        const text = data[0].reviews.split(";");
-        const reviews = [names, votes, text];
-        const newData = [{ ...data[0], reviews }];
-        setMovie(newData[0]);
-        console.log(newData[0]);
+        fetch(BACKEND_URL + `/api/movies/${movieId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            const votes = data[0].votes.split(";");
+            const names = data[0].names.split(";");
+            const text = data[0].reviews.split(";");
+            const reviews = [names, votes, text];
+            const newData = [{ ...data[0], reviews }];
+            setMovie(newData[0]);
+            console.log(newData[0]);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
+    setFormData(initialFormData);
   }
 
   return (
@@ -205,6 +205,7 @@ export default function MovieDetailPage() {
             {movie &&
               movie.reviews[0].map((item, index) => (
                 <button
+                  key={index}
                   type="button"
                   data-bs-target="#carouselExampleIndicators"
                   data-bs-slide-to={index}
