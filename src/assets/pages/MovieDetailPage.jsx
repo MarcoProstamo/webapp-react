@@ -40,7 +40,7 @@ export default function MovieDetailPage() {
   return (
     movie && (
       <>
-        <div className="row row-cols-2 mt-3 pb-5">
+        <div className="row row-cols-2 mt-3">
           <Card config={{ movie, position: "end" }} />
           <div className="col-3">
             <p className="text-center fs-3 fw-semibold">{movie.title}</p>
@@ -55,6 +55,16 @@ export default function MovieDetailPage() {
               </span>
             </div>
           </div>
+        </div>
+
+        <div className="container my-5">
+          <hr />
+        </div>
+
+        <div className="container text-center">Form</div>
+
+        <div className="container my-5">
+          <hr />
         </div>
 
         <div
