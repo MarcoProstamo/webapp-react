@@ -54,6 +54,19 @@ export default function MovieDetailPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const { VITE_BACKEND_URL: BACKEND_URL } = import.meta.env;
+
+    fetch(BACKEND_URL + `/api/movies/${movieId}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+
     setFormData(initialFormData);
   }
 
